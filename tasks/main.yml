@@ -1,0 +1,36 @@
+---
+
+- name: Add Java 8 repository
+  apt_repository:
+    repo: deb http://ppa.launchpad.net/webupd8team/java/ubuntu precise main
+
+- name: Install Java 8 Key (also belongs to VLC)
+  tags: debug
+  apt_key:
+    id: EEA14886
+    keyserver: keyserver.ubuntu.com
+  register: java8_apt_key
+
+- apt:
+    update_cache: yes
+  when: java8_apt_key.changed
+  
+- name: Install debconf-utils
+  apt:
+    name: debconf-utils
+
+- name: Read license
+  shell: echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && touch /root/.oracle-license-seen
+  args:
+    creates: /root/.oracle-license-seen
+
+- name: Accept license
+  shell: echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections && touch /root/.oracle-license-accepted
+  args:
+    creates: /root/.oracle-license-accepted
+
+- name: Install java installer
+  apt: name={{ item }}
+  with_items: 
+  - oracle-java8-installer
+  - oracle-java8-set-default
