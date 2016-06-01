@@ -34,3 +34,7 @@
   with_items: 
   - oracle-java8-installer
   - oracle-java8-set-default
+
+- name: Install Java Cryptography Extension
+  apt: name=oracle-java8-unlimited-jce-policy
+  when: '{{ install_cryptography_extension }}'
