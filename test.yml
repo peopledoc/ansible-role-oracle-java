@@ -1,0 +1,14 @@
+---
+
+- hosts: localhost
+  become: true
+  become_user: root
+  become_method: sudo
+  pre_tasks:
+  - add_host: name=java.lxd
+  roles:
+  - novafloss.boot-lxd
+
+- hosts: java.lxd
+  roles:
+  - '{{ playbook_dir }}'
