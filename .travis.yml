@@ -11,12 +11,10 @@ env:
   matrix:
   - ANSIBLE_REF=stable-2.2 LXD_ALIAS=debian/wheezy/amd64
   - ANSIBLE_REF=stable-2.2 LXD_ALIAS=debian/jessie/amd64
-  - ANSIBLE_REF=stable-2.2 LXD_ALIAS=debian/sid/amd64
   - ANSIBLE_REF=stable-2.2 LXD_ALIAS=ubuntu/trusty/amd64
   - ANSIBLE_REF=stable-2.2 LXD_ALIAS=ubuntu/xenial/amd64
   - ANSIBLE_REF=devel LXD_ALIAS=debian/wheezy/amd64
   - ANSIBLE_REF=devel LXD_ALIAS=debian/jessie/amd64
-  - ANSIBLE_REF=devel LXD_ALIAS=debian/sid/amd64
   - ANSIBLE_REF=devel LXD_ALIAS=ubuntu/trusty/amd64
   - ANSIBLE_REF=devel LXD_ALIAS=ubuntu/xenial/amd64
 
