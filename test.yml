@@ -13,4 +13,5 @@
 
 - hosts: java.lxd
   roles:
-  - '{{ playbook_dir }}'
+  - role: '{{ playbook_dir }}'
+    install_cryptography_extension: true
