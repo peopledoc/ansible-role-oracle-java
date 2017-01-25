@@ -7,7 +7,7 @@
   pre_tasks:
   - add_host:
       name: java.lxd
-      lxd_alias: '{{ lookup("env", "LXD_ALIAS", "ubuntu/trusty/amd64").strip(",") }}'
+      lxd_alias: '{{ lookup("env", "LXD_ALIAS", "debian/jessie/amd64").strip(",") }}'
   roles:
   - novafloss.boot-lxd
 
