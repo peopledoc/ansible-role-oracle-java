@@ -28,4 +28,4 @@ install:
 - ssh-keygen -f /home/travis/.ssh/id_rsa -N ''
 
 script:
-- sg lxd 'ansible-playbook -v test.yml --sudo'
+- sg lxd 'ansible-playbook --diff -v test.yml --sudo'
