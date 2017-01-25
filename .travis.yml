@@ -9,13 +9,16 @@ env:
   global:
     - ANSIBLE_STDOUT_CALLBACK=debug
   matrix:
-  - ANSIBLE_REF=devel
-  - ANSIBLE_REF=stable-2.2
-  - LXD_ALIAS=debian/wheezy/amd64
-  - LXD_ALIAS=debian/jessie/amd64
-  - LXD_ALIAS=debian/sid/amd64
-  - LXD_ALIAS=ubuntu/trusty/amd64
-  - LXD_ALIAS=ubuntu/xenial/amd64
+  - ANSIBLE_REF=stable-2.2 LXD_ALIAS=debian/wheezy/amd64
+  - ANSIBLE_REF=stable-2.2 LXD_ALIAS=debian/jessie/amd64
+  - ANSIBLE_REF=stable-2.2 LXD_ALIAS=debian/sid/amd64
+  - ANSIBLE_REF=stable-2.2 LXD_ALIAS=ubuntu/trusty/amd64
+  - ANSIBLE_REF=stable-2.2 LXD_ALIAS=ubuntu/xenial/amd64
+  - ANSIBLE_REF=devel LXD_ALIAS=debian/wheezy/amd64
+  - ANSIBLE_REF=devel LXD_ALIAS=debian/jessie/amd64
+  - ANSIBLE_REF=devel LXD_ALIAS=debian/sid/amd64
+  - ANSIBLE_REF=devel LXD_ALIAS=ubuntu/trusty/amd64
+  - ANSIBLE_REF=devel LXD_ALIAS=ubuntu/xenial/amd64
 
 install:
 - travis_retry wget https://raw.githubusercontent.com/novafloss/ansible-setup/master/ansible-setup
