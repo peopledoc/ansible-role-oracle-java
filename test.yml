@@ -1,0 +1,17 @@
+---
+
+- hosts: localhost
+  become: true
+  become_user: root
+  become_method: sudo
+  pre_tasks:
+  - add_host:
+      name: java.lxd
+      lxd_alias: '{{ lookup("env", "LXD_ALIAS", "debian/jessie/amd64").strip(",") }}'
+  roles:
+  - novafloss.boot-lxd
+
+- hosts: java.lxd
+  roles:
+  - role: '{{ playbook_dir }}'
+    install_cryptography_extension: true
