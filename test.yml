@@ -5,7 +5,9 @@
   become_user: root
   become_method: sudo
   pre_tasks:
-  - add_host: name=java.lxd
+  - add_host:
+      name: java.lxd
+      lxd_alias: '{{ lookup("env", "LXD_ALIAS", "ubuntu/trusty/amd64") }}'
   roles:
   - novafloss.boot-lxd
 
