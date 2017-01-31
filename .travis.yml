@@ -1,0 +1,29 @@
+sudo: required
+dist: trusty
+
+language: python
+python:
+- '2.7'
+
+env:
+  global:
+    - ANSIBLE_STDOUT_CALLBACK=debug
+  matrix:
+  - ANSIBLE_REF=stable-2.2 LXD_ALIAS=debian/wheezy/amd64
+  - ANSIBLE_REF=stable-2.2 LXD_ALIAS=debian/jessie/amd64
+  - ANSIBLE_REF=stable-2.2 LXD_ALIAS=ubuntu/trusty/amd64
+  - ANSIBLE_REF=stable-2.2 LXD_ALIAS=ubuntu/xenial/amd64
+  - ANSIBLE_REF=devel LXD_ALIAS=debian/wheezy/amd64
+  - ANSIBLE_REF=devel LXD_ALIAS=debian/jessie/amd64
+  - ANSIBLE_REF=devel LXD_ALIAS=ubuntu/trusty/amd64
+  - ANSIBLE_REF=devel LXD_ALIAS=ubuntu/xenial/amd64
+
+install:
+- travis_retry wget https://raw.githubusercontent.com/novafloss/ansible-setup/master/ansible-setup
+- bash -ex ansible-setup lxd_require
+- bash ansible-setup ansible_ref_require $ANSIBLE_REF /usr/bin
+- ansible-galaxy install -p . -r test-requirements.yml
+- ssh-keygen -f /home/travis/.ssh/id_rsa -N ''
+
+script:
+- sg lxd 'ansible-playbook -v test.yml --sudo'
