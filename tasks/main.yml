@@ -14,7 +14,7 @@
 - apt:
     update_cache: yes
   when: java8_apt_key.changed
-  
+
 - name: Install debconf-utils
   apt:
     name: debconf-utils
@@ -31,7 +31,7 @@
 
 - name: Install java installer
   apt: name={{ item }}
-  with_items: 
+  with_items:
   - oracle-java8-installer
   - oracle-java8-set-default
 
