@@ -37,4 +37,4 @@
 
 - name: Install Java Cryptography Extension
   apt: name=oracle-java8-unlimited-jce-policy
-  when: '{{ install_cryptography_extension }}'
+  when: install_cryptography_extension
