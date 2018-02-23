@@ -1,15 +1,15 @@
 ---
 
-- name: Add Java 8 repository
-  apt_repository:
-    repo: deb http://ppa.launchpad.net/webupd8team/java/ubuntu precise main
-
 - name: Install Java 8 Key (also belongs to VLC)
   tags: debug
   apt_key:
     id: EEA14886
     keyserver: keyserver.ubuntu.com
   register: java8_apt_key
+
+- name: Add Java 8 repository
+  apt_repository:
+    repo: deb http://ppa.launchpad.net/webupd8team/java/ubuntu precise main
 
 - apt:
     update_cache: yes
