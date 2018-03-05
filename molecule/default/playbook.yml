@@ -1,5 +1,7 @@
 ---
 - name: Converge
   hosts: all
+  become: yes
   roles:
     - role: ansible-role-oracle-java
+      install_cryptography_extension: true
