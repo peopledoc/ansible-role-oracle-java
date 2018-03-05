@@ -6,8 +6,8 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: instance
-    image: centos:7
+  - name: molecule_test_instance
+    image: ${BASE_IMAGE:-debian:stretch}
 provisioner:
   name: ansible
   lint:
