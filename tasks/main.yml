@@ -1,5 +1,12 @@
 ---
 
+- name: Install gpg package
+  apt:
+    name: gnupg
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
+
 - name: 'Install Java 8 Key (also belongs to VLC): 0xc2518248eea14886'
   tags: debug
   apt_key:

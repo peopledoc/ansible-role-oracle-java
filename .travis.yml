@@ -6,24 +6,15 @@ python:
 - '2.7'
 
 env:
-  global:
-    - ANSIBLE_STDOUT_CALLBACK=debug
   matrix:
-  - ANSIBLE_REF=stable-2.2 LXD_ALIAS=debian/wheezy/amd64
-  - ANSIBLE_REF=stable-2.2 LXD_ALIAS=debian/jessie/amd64
-  - ANSIBLE_REF=stable-2.2 LXD_ALIAS=ubuntu/trusty/amd64
-  - ANSIBLE_REF=stable-2.2 LXD_ALIAS=ubuntu/xenial/amd64
-  - ANSIBLE_REF=devel LXD_ALIAS=debian/wheezy/amd64
-  - ANSIBLE_REF=devel LXD_ALIAS=debian/jessie/amd64
-  - ANSIBLE_REF=devel LXD_ALIAS=ubuntu/trusty/amd64
-  - ANSIBLE_REF=devel LXD_ALIAS=ubuntu/xenial/amd64
+  - ANSIBLE_REF=2.4.3.0 BASE_IMAGE=ubuntu:xenial
+  - ANSIBLE_REF=2.4.3.0 BASE_IMAGE=debian:stretch
+  - ANSIBLE_REF=2.3.3.0 BASE_IMAGE=ubuntu:xenial
+  - ANSIBLE_REF=2.3.3.0 BASE_IMAGE=debian:stretch
 
 install:
-- travis_retry wget https://raw.githubusercontent.com/novafloss/ansible-setup/master/ansible-setup
-- bash -ex ansible-setup lxd_require
-- bash ansible-setup ansible_ref_require $ANSIBLE_REF /usr/bin
-- ansible-galaxy install -p . -r test-requirements.yml
-- ssh-keygen -f /home/travis/.ssh/id_rsa -N ''
+  - pip install --upgrade pip setuptools wheel
+  - pip install ansible==${ANSIBLE_REF} molecule docker-py
 
 script:
-- sg lxd 'ansible-playbook -v test.yml --sudo'
+  - molecule test --driver-name docker
