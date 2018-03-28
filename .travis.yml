@@ -7,14 +7,14 @@ python:
 
 env:
   matrix:
-  - ANSIBLE_REF=2.4.3.0 BASE_IMAGE=ubuntu:xenial
-  - ANSIBLE_REF=2.4.3.0 BASE_IMAGE=debian:stretch
-  - ANSIBLE_REF=2.3.3.0 BASE_IMAGE=ubuntu:xenial
-  - ANSIBLE_REF=2.3.3.0 BASE_IMAGE=debian:stretch
+  - ANSIBLE_REF='ansible<2.6' BASE_IMAGE=ubuntu:xenial
+  - ANSIBLE_REF='ansible<2.6' BASE_IMAGE=debian:stretch
+  - ANSIBLE_REF='ansible<2.5' BASE_IMAGE=ubuntu:xenial
+  - ANSIBLE_REF='ansible<2.5' BASE_IMAGE=debian:stretch
 
 install:
   - pip install --upgrade pip setuptools wheel
-  - pip install ansible==${ANSIBLE_REF} molecule docker-py
+  - pip install "${ANSIBLE_REF}" molecule docker-py
 
 script:
   - molecule test --driver-name docker
