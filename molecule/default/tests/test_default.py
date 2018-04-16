@@ -37,3 +37,13 @@ def test_binaries(host):
 
     # compare java and javac versions
     assert java_version == 'java version "%s"' % javac_version
+
+
+def test_certificates(host):
+    cmd = "keytool -list -storepass changeit "
+    cmd += "-keystore /usr/lib/jvm/java-8-oracle/jre/lib/security/cacerts"
+    run = host.run(cmd)
+    print(run.stdout)
+    assert run.rc == 0
+    assert "google.com" in run.stdout
+    assert "dummy-test" in run.stdout

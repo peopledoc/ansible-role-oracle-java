@@ -44,3 +44,13 @@
 - name: Install Java Cryptography Extension
   apt: name=oracle-java8-unlimited-jce-policy
   when: install_cryptography_extension|bool
+
+- name: Add CA certificates to Java keystore
+  java_cert:
+    cert_alias: "{{ item.alias|default(omit) }}"
+    cert_url: "{{ item.url|default(omit) }}"
+    cert_path: "{{ item.path|default(omit) }}"
+    keystore_path: /usr/lib/jvm/java-8-oracle/jre/lib/security/cacerts
+    keystore_pass: "{{ ca_certificates.password }}"
+    state: present
+  with_items: "{{ ca_certificates.certificates }}"

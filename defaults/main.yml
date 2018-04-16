@@ -1,3 +1,6 @@
 ---
 
 install_cryptography_extension: False
+ca_certificates:
+  certificates: []
+  password: ""
