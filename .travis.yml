@@ -13,8 +13,8 @@ env:
   - ANSIBLE_REF='ansible<2.5' BASE_IMAGE=debian:stretch
 
 install:
-  - pip install --upgrade pip setuptools wheel
-  - pip install "${ANSIBLE_REF}" molecule docker-py
+  - travis_retry pip install --upgrade pip setuptools wheel
+  - travis_retry pip install "${ANSIBLE_REF}" molecule docker-py
 
 script:
   - molecule test --driver-name docker
