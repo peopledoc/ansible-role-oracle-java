@@ -5,3 +5,9 @@
   roles:
     - role: ansible-role-oracle-java
       install_cryptography_extension: true
+      ca_certificates:
+        certificates:
+          - alias: dummy-test
+            path: /usr/local/share/ca-certificates/dummy.crt
+          - url: google.com
+        password: changeit
