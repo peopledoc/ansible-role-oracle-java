@@ -39,11 +39,25 @@ def test_binaries(host):
     assert java_version == 'java version "%s"' % javac_version
 
 
-def test_certificates(host):
+def test_keystore_pass_changed(host):
+
+    # Check default password is no longer working
     cmd = "keytool -list -storepass changeit "
     cmd += "-keystore /usr/lib/jvm/java-8-oracle/jre/lib/security/cacerts"
     run = host.run(cmd)
-    print(run.stdout)
+    assert run.rc == 1
+
+    # Check the new password is working
+    cmd = "keytool -list -storepass test123 "
+    cmd += "-keystore /usr/lib/jvm/java-8-oracle/jre/lib/security/cacerts"
+    run = host.run(cmd)
+    assert run.rc == 0
+
+
+def test_certificates(host):
+    cmd = "keytool -list -storepass test123 "
+    cmd += "-keystore /usr/lib/jvm/java-8-oracle/jre/lib/security/cacerts"
+    run = host.run(cmd)
     assert run.rc == 0
     assert "google.com" in run.stdout
     assert "dummy-test" in run.stdout

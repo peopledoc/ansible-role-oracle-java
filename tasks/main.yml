@@ -45,6 +45,16 @@
   apt: name=oracle-java8-unlimited-jce-policy
   when: install_cryptography_extension|bool
 
+- name: Check if Java keystore use default password
+  command: keytool -list -keystore /usr/lib/jvm/java-8-oracle/jre/lib/security/cacerts -storepass {{ default_keystore_password }}
+  register: keytool_list
+  ignore_errors: yes
+  changed_when: false
+
+- name: Set Java keystore password
+  command: keytool -storepasswd -new {{ ca_certificates.password }} -storepass {{ default_keystore_password }} -keystore /usr/lib/jvm/java-8-oracle/jre/lib/security/cacerts 
+  when: keytool_list is success
+
 - name: Add CA certificates to Java keystore
   java_cert:
     cert_alias: "{{ item.alias|default(omit) }}"
