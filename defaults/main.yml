@@ -3,4 +3,5 @@
 install_cryptography_extension: False
 ca_certificates:
   certificates: []
-  password: ""
+  password: "changeit"
+default_keystore_password: "changeit"

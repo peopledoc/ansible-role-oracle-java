@@ -10,4 +10,4 @@
           - alias: dummy-test
             path: /usr/local/share/ca-certificates/dummy.crt
           - url: google.com
-        password: changeit
+        password: test123
