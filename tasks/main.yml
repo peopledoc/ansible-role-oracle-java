@@ -53,7 +53,7 @@
   no_log: true
 
 - name: Set Java keystore password
-  command: keytool -storepasswd -new {{ ca_certificates.password }} -storepass {{ default_keystore_password }} -keystore /usr/lib/jvm/java-8-oracle/jre/lib/security/cacerts 
+  command: keytool -storepasswd -new {{ ca_certificates.password }} -storepass {{ default_keystore_password }} -keystore /usr/lib/jvm/java-8-oracle/jre/lib/security/cacerts
   when: keytool_list is success
   no_log: true
 
