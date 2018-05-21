@@ -7,8 +7,8 @@ python:
 
 env:
   matrix:
-  - ANSIBLE_REF='ansible==2.5.0' BASE_IMAGE=ubuntu:xenial
-  - ANSIBLE_REF='ansible==2.5.0' BASE_IMAGE=debian:stretch
+  - ANSIBLE_REF='ansible<2.6' BASE_IMAGE=ubuntu:xenial
+  - ANSIBLE_REF='ansible<2.6' BASE_IMAGE=debian:stretch
   - ANSIBLE_REF='ansible<2.5' BASE_IMAGE=ubuntu:xenial
   - ANSIBLE_REF='ansible<2.5' BASE_IMAGE=debian:stretch
 
