@@ -2,7 +2,7 @@
 - name: Prepare
   hosts: all
   gather_facts: false
-  tasks: 
+  tasks:
     - name: Add certificate test file
       copy:
         src: dummy.crt
