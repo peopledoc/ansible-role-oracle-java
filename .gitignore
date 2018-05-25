@@ -1,4 +1,2 @@
 __pycache__/
-/molecule/*/.molecule/
-/molecule/*/.pytest_cache/
 /molecule/*/pytestdebug.log
