@@ -5,3 +5,4 @@ ca_certificates:
   certificates: []
   password: "changeit"
 default_keystore_password: "changeit"
+add_bouncycastle: false

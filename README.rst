@@ -27,3 +27,5 @@ CA certificates can be added to the java keystore with the following variables::
     password: changeit
 
 Java Cryptography Extension can be installed with the ``install_cryptography_extension`` boolean variable.
+
+Bouncycastle libs can be added with the ``add_bouncycastle`` boolean variable.
