@@ -68,3 +68,17 @@
     keystore_pass: "{{ ca_certificates.password }}"
     state: present
   with_items: "{{ ca_certificates.certificates }}"
+
+- name: "Get JAVA_HOME path"
+  shell: '. /etc/profile && echo "$JAVA_HOME"'
+  register: java_home
+  changed_when: false
+
+- name: "Copy bouncycastle jars in JRE external libs"
+  copy:
+    src: '{{ item }}'
+    dest: "{{ java_home.stdout|default('/usr/lib/jvm/java-8-oracle') }}/jre/lib/ext/"
+  with_items:
+    - bouncycastle/bcprov-jdk15on-1.51.jar
+    - bouncycastle/bcpkix-jdk15on-1.51.jar
+  when: add_bouncycastle
