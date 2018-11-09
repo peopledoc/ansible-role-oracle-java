@@ -41,8 +41,7 @@
   - oracle-java8-installer
   - oracle-java8-set-default
 
-- name: Install Java Cryptography Extension
-  apt: name=oracle-java8-unlimited-jce-policy
+- import_tasks: cryptography_extension.yml
   when: install_cryptography_extension|bool
 
 - name: Check if Java keystore use default password
