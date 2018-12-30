@@ -36,10 +36,10 @@
     creates: /root/.oracle-license-accepted
 
 - name: Install java installer
-  apt: name={{ item }}
-  with_items:
-  - oracle-java8-installer
-  - oracle-java8-set-default
+  apt:
+    name:
+      - oracle-java8-installer
+      - oracle-java8-set-default
 
 - import_tasks: cryptography_extension.yml
   when: install_cryptography_extension|bool
